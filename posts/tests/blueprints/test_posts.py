@@ -39,7 +39,7 @@ class TestPosts():
         response = test_client.post(
           '/posts', json={
             'routeId': '1',
-            'expireAt': "2024-02-17T02:21:49.025Z"
+            'expireAt': "2024-06-17T02:21:49.025Z"
           }
         )
         assert response.status_code == 403
@@ -114,7 +114,7 @@ class TestPosts():
   def test_get_post_without_token(self):
     data = {
       'routeId': '1',
-      'expireAt': "2024-02-17T02:21:49Z"
+      'expireAt': "2024-06-17T02:21:49.025Z"
     }
     userId = '09322959-5bd7-4fdb-b262-ab46dab67c68'
     post = CreatePost(data, userId).execute()
@@ -236,7 +236,7 @@ class TestPosts():
   def test_get_posts_without_token(self):
     data = {
       'routeId': '1',
-      'expireAt': "2024-02-17T02:21:49.025Z"
+      'expireAt': "2024-06-17T02:21:49.025Z"
     }
     userId = '09322959-5bd7-4fdb-b262-ab46dab67c68'
     CreatePost(data, userId).execute()
