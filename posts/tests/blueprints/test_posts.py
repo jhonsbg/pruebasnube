@@ -59,16 +59,16 @@ class TestPosts():
         )
         assert response.status_code == 401
 
-  # def test_create_post_missing_fields(self):
-  #   with app.test_client() as test_client:
-  #     with HTTMock(mock_success_auth):
-  #       response = test_client.get(
-  #         '/posts', json={},
-  #         headers={
-  #           'Authorization': f'Bearer {uuid4()}'
-  #         }
-  #       )
-  #       assert response.status_code == 400
+  def test_create_post_missing_fields(self):
+    with app.test_client() as test_client:
+      with HTTMock(mock_success_auth):
+        response = test_client.get(
+          '/posts', json={},
+          headers={
+            'Authorization': f'Bearer 09322959-5bd7-4fdb-b262-ab46dab67c68'
+          }
+        )
+        assert response.status_code == 400
 
   # def test_create_post_invalid_dates(self):
   #   with app.test_client() as test_client:
