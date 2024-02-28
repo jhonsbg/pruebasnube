@@ -2,7 +2,7 @@ name: Test coverage
 on:
   push:
     branches: 
-      - rf-003-microservice
+      - feature/rf-003-microservice
 jobs:
   test_user:
     runs-on: ubuntu-latest
