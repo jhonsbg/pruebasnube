@@ -4,7 +4,7 @@ from src.commands.create_post import CreatePost
 from src.session import Session, engine
 from src.models.model import Base
 from src.models.post import Post
-from src.errors.errors import InvalidParams
+from src.errors.errors import InvalidDates, InvalidParams
 from datetime import datetime, timedelta
 
 class TestGetPosts():
@@ -39,7 +39,7 @@ class TestGetPosts():
       }
       GetPosts(data, self.userId).execute()
       assert False
-    except InvalidParams:
+    except InvalidDates:
       assert True
 
   def teardown_method(self):
