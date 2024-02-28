@@ -4,7 +4,7 @@ from src.models.model import Base
 from src.models.post import Post
 from src.errors.errors import ApiError
 from datetime import datetime, timedelta
-from tests.mocks import mock_failed_auth, mock_success_auth
+from tests.mocks import mock_failed_auth, mock_failed_auth_outtoken, mock_success_auth
 from httmock import HTTMock
 from uuid import uuid4
 from src.main import app
@@ -114,13 +114,13 @@ class TestPosts():
   def test_get_post_without_token(self):
     data = {
       'routeId': '1',
-      'expireAt': "2024-02-17T02:21:49.025Z"
+      'expireAt': "2024-02-17T02:21:49"
     }
     userId = '09322959-5bd7-4fdb-b262-ab46dab67c68'
     post = CreatePost(data, userId).execute()
 
     with app.test_client() as test_client:
-      with HTTMock(mock_failed_auth):
+      with HTTMock(mock_failed_auth_outtoken):
         response = test_client.get(
           f'/posts/{post["id"]}'
         )
