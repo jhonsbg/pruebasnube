@@ -121,7 +121,13 @@ class TestPosts():
     with app.test_client() as test_client:
       with HTTMock(mock_failed_auth_outtoken):
         response = test_client.get(
-          f'/posts/{post["id"]}'
+          f'/posts/{post["id"]}', json={
+            'routeId': 1,
+            'expireAt': "2023-06-17T02:21:49.025Z"
+          },
+          headers={
+            'Authorization': None
+          }
         )
         assert response.status_code == 403
 
