@@ -65,7 +65,7 @@ class TestPosts():
         response = test_client.post(
           '/posts', json={},
           headers={
-            'Authorization': f'Bearer {uuid4()}'
+            'Authorization': f'Bearer 39fb8604-7a9f-44b5-88d2-4be1ec9efba2'
           }
         )
         assert response.status_code == 400
