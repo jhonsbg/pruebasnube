@@ -59,31 +59,30 @@ class TestPosts():
         )
         assert response.status_code == 401
 
-  def test_create_post_missing_fields(self):
+  # def test_create_post_missing_fields(self):
+  #   with app.test_client() as test_client:
+  #     with HTTMock(mock_success_auth):
+  #       response = test_client.get(
+  #         '/posts', json={},
+  #         headers={
+  #           'Authorization': f'Bearer 09322959-5bd7-4fdb-b262-ab46dab67c68'
+  #         }
+  #       )
+  #       assert response.status_code == 400
+
+  def test_create_post_invalid_dates(self):
     with app.test_client() as test_client:
       with HTTMock(mock_success_auth):
-        response = test_client.get(
-          '/posts', json={},
+        response = test_client.post(
+          '/posts', json={
+            'routeId': 1,
+            'expireAt': "2023-06-17T02:21:49.025Z"
+          },
           headers={
             'Authorization': f'Bearer 09322959-5bd7-4fdb-b262-ab46dab67c68'
           }
         )
-        assert response.status_code == 400
-
-  # def test_create_post_invalid_dates(self):
-  #   with app.test_client() as test_client:
-  #     with HTTMock(mock_success_auth):
-  #       response = test_client.post(
-  #         '/posts', json={
-  #           'routeId': 1,
-  #           'plannedStartDate': (datetime.now() + timedelta(days=2)).date().isoformat(),
-  #           'plannedEndDate': datetime.now().date().isoformat()
-  #         },
-  #         headers={
-  #           'Authorization': f'Bearer {uuid4()}'
-  #         }
-  #       )
-  #       assert response.status_code == 412
+        assert response.status_code == 412
 
   # def test_get_post(self):
   #   data = {
