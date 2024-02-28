@@ -114,7 +114,7 @@ class TestPosts():
   def test_get_post_without_token(self):
     data = {
       'routeId': '1',
-      'expireAt': "2024-02-17T02:21:49"
+      'expireAt': "2024-02-17T02:21:49Z"
     }
     userId = '09322959-5bd7-4fdb-b262-ab46dab67c68'
     post = CreatePost(data, userId).execute()
