@@ -9,7 +9,8 @@ from tests.mocks import mock_failed_auth, mock_success_auth
 class TestAuthenticate():
   def test_authenticate(self):
     with HTTMock(mock_success_auth):
-      result = Authenticate(uuid4()).execute()
+      token = str(uuid4())
+      result = Authenticate(token).execute()
       assert 'id' in result
 
   def test_failed_authenticate(self):
