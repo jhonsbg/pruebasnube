@@ -8,15 +8,15 @@ from src.errors.errors import InvalidDates, InvalidParams
 from datetime import datetime, timedelta
 
 class TestGetPosts():
-  def setup_method(self):
-    Base.metadata.create_all(engine)
-    self.session = Session()
-    self.post_data = {
-      'routeId': '1',
-      'expireAt': "2024-02-17T02:21:49.025Z"
-    }
-    self.userId = '09322959-5bd7-4fdb-b262-ab46dab67c68'
-    self.post = CreatePost(self.post_data, self.userId).execute()
+  # def setup_method(self):
+  #   Base.metadata.create_all(engine)
+  #   self.session = Session()
+  #   self.post_data = {
+  #     'routeId': '1',
+  #     'expireAt': "2024-02-17T02:21:49"
+  #   }
+  #   self.userId = '09322959-5bd7-4fdb-b262-ab46dab67c68'
+  #   self.post = CreatePost(self.post_data, self.userId).execute()
 
   # def test_get_posts(self):
   #   data = {
