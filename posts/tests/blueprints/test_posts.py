@@ -110,45 +110,45 @@ class TestPosts():
   #       assert 'plannedEndDate' in response_json
   #       assert 'createdAt' in response_json
   
-  def test_get_post_without_token(self):
-    data = {
-      'routeId': '1',
-      'expireAt': "2024-06-17T02:21:49.025Z"
-    }
-    userId = '09322959-5bd7-4fdb-b262-ab46dab67c68'
-    post = CreatePost(data, userId).execute()
-
-    with app.test_client() as test_client:
-      with HTTMock(mock_failed_auth_outtoken):
-        response = test_client.get(
-          f'/posts/{post["id"]}', json={
-            'routeId': 1,
-            'expireAt': "2023-06-17T02:21:49.025Z"
-          },
-          headers={
-            'Authorization': None
-          }
-        )
-        assert response.status_code == 403
-
-  # def test_get_post_invalid_token(self):
+  # def test_get_post_without_token(self):
   #   data = {
-  #     'routeId': 1,
-  #     'plannedStartDate': datetime.now().date().isoformat(),
-  #     'plannedEndDate': (datetime.now() + timedelta(days=2)).date().isoformat()
+  #     'routeId': '1',
+  #     'expireAt': "2024-06-17T02:21:49.025Z"
   #   }
-  #   userId = 1
+  #   userId = '09322959-5bd7-4fdb-b262-ab46dab67c68'
   #   post = CreatePost(data, userId).execute()
 
   #   with app.test_client() as test_client:
-  #     with HTTMock(mock_failed_auth):
+  #     with HTTMock(mock_failed_auth_outtoken):
   #       response = test_client.get(
-  #         f'/posts/{post["id"]}',
+  #         f'/posts/{post["id"]}', json={
+  #           'routeId': 1,
+  #           'expireAt': "2023-06-17T02:21:49.025Z"
+  #         },
   #         headers={
-  #           'Authorization': f'Bearer Invalid'
+  #           'Authorization': None
   #         }
   #       )
-  #       assert response.status_code == 401
+  #       assert response.status_code == 403
+
+  def test_get_post_invalid_token(self):
+    data = {
+      'routeId': 1,
+      'plannedStartDate': datetime.now().date().isoformat(),
+      'plannedEndDate': (datetime.now() + timedelta(days=2)).date().isoformat()
+    }
+    userId = 1
+    post = CreatePost(data, userId).execute()
+
+    with app.test_client() as test_client:
+      with HTTMock(mock_failed_auth):
+        response = test_client.get(
+          f'/posts/{post["id"]}',
+          headers={
+            'Authorization': f'Bearer Invalid'
+          }
+        )
+        assert response.status_code == 401
 
   # def test_get_post_invalid_id(self):
   #   with app.test_client() as test_client:
