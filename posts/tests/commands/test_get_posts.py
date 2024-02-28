@@ -39,7 +39,7 @@ class TestGetPosts():
       }
       GetPosts(data, self.userId).execute()
       assert False
-    except InvalidDates:
+    except InvalidParams:
       assert True
 
   def teardown_method(self):
