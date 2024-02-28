@@ -22,17 +22,17 @@ class PostNotFoundError(ApiError):
     code = 404
     # description = "Route does not exist"
 
-# class ExternalError(ApiError):
-#     code = 422 # Default
-#     description = "External error"
+class ExternalError(ApiError):
+    code = 422 # Default
+    description = "External error"
 
 class NoTokenRequest(ApiError):
     code = 403
     
-# class PostCreateError(ApiError):
-#     code = 422 # Default
-#     description = "La publicación ya esta creada"
+class PostCreateError(ApiError):
+    code = 422 # Default
+    description = "La publicación ya esta creada"
 
-#     def __init__(self, code):
-#         self.code = code
+    def __init__(self, code):
+        self.code = code
 
