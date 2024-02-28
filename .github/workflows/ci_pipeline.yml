@@ -2,7 +2,7 @@ name: Test coverage
 on:
   push:
     branches: 
-      - ma
+      - main
 jobs:
   test_user:
     runs-on: ubuntu-latest
