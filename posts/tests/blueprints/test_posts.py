@@ -62,10 +62,10 @@ class TestPosts():
   def test_create_post_missing_fields(self):
     with app.test_client() as test_client:
       with HTTMock(mock_success_auth):
-        response = test_client.post(
+        response = test_client.get(
           '/posts', json={},
           headers={
-            'Authorization': f'Bearer bf8792d2-3097-11ee-be56-0242ac120002'
+            'Authorization': f'Bearer {uuid4()}'
           }
         )
         assert response.status_code == 400
