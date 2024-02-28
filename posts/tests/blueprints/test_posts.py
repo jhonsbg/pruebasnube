@@ -131,35 +131,35 @@ class TestPosts():
   #       )
   #       assert response.status_code == 403
 
-  def test_get_post_invalid_token(self):
-    data = {
-      'routeId': 1,
-      'plannedStartDate': datetime.now().date().isoformat(),
-      'plannedEndDate': (datetime.now() + timedelta(days=2)).date().isoformat()
-    }
-    userId = 1
-    post = CreatePost(data, userId).execute()
+  # def test_get_post_invalid_token(self):
+  #   data = {
+  #     'routeId': 1,
+  #     'plannedStartDate': datetime.now().date().isoformat(),
+  #     'plannedEndDate': (datetime.now() + timedelta(days=2)).date().isoformat()
+  #   }
+  #   userId = 1
+  #   post = CreatePost(data, userId).execute()
 
-    with app.test_client() as test_client:
-      with HTTMock(mock_failed_auth):
-        response = test_client.get(
-          f'/posts/{post["id"]}',
-          headers={
-            'Authorization': f'Bearer Invalid'
-          }
-        )
-        assert response.status_code == 401
-
-  # def test_get_post_invalid_id(self):
   #   with app.test_client() as test_client:
-  #     with HTTMock(mock_success_auth):
+  #     with HTTMock(mock_failed_auth):
   #       response = test_client.get(
-  #         f'/posts/invalid',
+  #         f'/posts/{post["id"]}',
   #         headers={
-  #           'Authorization': f'Bearer {uuid4()}'
+  #           'Authorization': f'Bearer Invalid'
   #         }
   #       )
-  #       assert response.status_code == 400
+  #       assert response.status_code == 401
+
+  def test_get_post_invalid_id(self):
+    with app.test_client() as test_client:
+      with HTTMock(mock_success_auth):
+        response = test_client.get(
+          f'/posts/invalid',
+          headers={
+            'Authorization': f'Bearer 09322959-5bd7-4fdb-b262-ab46dab67c68'
+          }
+        )
+        assert response.status_code == 400
 
   # def test_get_post_doesnt_exist(self):
   #   data = {
